@@ -21,7 +21,7 @@ class UsersDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        return (new EloquentDataTable($query))->setRowId('id');
+        return (new EloquentDataTable($query))->setRowId('id')->addIndexColumn()->addColumns(['actions']);
     }
 
     public function query(User $model): QueryBuilder
@@ -34,28 +34,52 @@ class UsersDataTable extends DataTable
         return $this->builder()
             ->setTableId('users-table')
             ->columns($this->getColumns())
-            ->minifiedAjax()
-            ->orderBy(1)
-            ->selectStyleSingle()
-            ->buttons([
-                Button::make('add'),
-                Button::make('excel'),
-                Button::make('csv'),
-                Button::make('pdf'),
-                Button::make('print'),
-                Button::make('reset'),
-                Button::make('reload'),
-            ]);
+            ->minifiedAjax();
+        // ->parameters([
+        //     'dom'       => 'Bfrtip',
+        //     'stateSave' => true,
+        //     'order'     => [[0, 'desc']],
+        //     'buttons'   => [
+
+        //         [
+        //             'extend' => 'create',
+        //             'className' => 'text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+        //             'text' => '<i class="fa fa-plus"></i> ' . __('Buttons.Create') . ''
+        //         ],
+        //         [
+        //             'extend' => 'export',
+        //             'className' => 'text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+        //             'text' => '<i class="fa fa-download"></i> ' . __('Buttons.Export') . ''
+        //         ],
+        //         [
+        //             'extend' => 'print',
+        //             'className' => 'text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+        //             'text' => '<i class="fa fa-print"></i> ' . __('Buttons.Print') . ''
+        //         ],
+        //         [
+        //             'extend' => 'reset',
+        //             'className' => 'text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+        //             'text' => '<i class="fa fa-undo"></i> ' . __('Buttons.Reset') . ''
+        //         ],
+        //         [
+        //             'extend' => 'reload',
+        //             'className' => 'text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2',
+        //             'text' => '<i class="fa fa-sync-alt"></i> ' . __('Buttons.Reload') . ''
+        //         ],
+        //     ],
+        // ]);
     }
 
     public function getColumns(): array
     {
         return [
+            Column::make('DT_RowIndex')->title('#')->orderable(false)->searchable(false),
             Column::make('id'),
             Column::make('name'),
             Column::make('email'),
             Column::make('created_at'),
             Column::make('updated_at'),
+
         ];
     }
 
