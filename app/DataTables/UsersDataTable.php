@@ -21,7 +21,29 @@ class UsersDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        return (new EloquentDataTable($query))->setRowId('id')->addIndexColumn()->addColumns(['actions']);
+        return (new EloquentDataTable($query))->setRowId('id')
+            ->addColumn('action', function ($query) {
+                $data['action'] = $this->actions($query);
+                return view('datatable.actions', compact('data', 'query'))->render();
+            })->addIndexColumn()->rawColumns(['action']);
+    }
+
+    public function actions($id)
+    {
+        return  [
+            [
+                'title' => 'Hapus',
+                'icon' => 'bi bi-trash',
+                'route' => 'http://127.0.0.1:8089/users',
+                'type' => 'delete',
+            ],
+            [
+                'title' => 'Edit',
+                'icon' => 'bi bi-pen',
+                'route' => 'as',
+                'type' => '',
+            ],
+        ];
     }
 
     public function query(User $model): QueryBuilder
@@ -79,6 +101,7 @@ class UsersDataTable extends DataTable
             Column::make('email'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::make('action')->title(__('field.action'))->orderable(false),
 
         ];
     }
