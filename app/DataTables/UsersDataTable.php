@@ -34,7 +34,7 @@ class UsersDataTable extends DataTable
             [
                 'title' => 'Hapus',
                 'icon' => 'bi bi-trash',
-                'route' => 'http://127.0.0.1:8089/users',
+                'route' => route('users.destroy', $id),
                 'type' => 'delete',
             ],
             [
