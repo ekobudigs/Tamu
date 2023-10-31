@@ -143,6 +143,7 @@
     <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
     <script src="{{ asset('assets/buttons.server-side.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -166,6 +167,27 @@
         </main>
     </div>
     @stack('scripts')
+
+    <script>
+        function hapus(url) {
+            Swal.fire({
+                title: "Konfirmasi Hapus",
+                text: "Anda yakin ingin menghapus data ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                    console.log('ok');
+                }
+            })
+        }
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 </body>
 
