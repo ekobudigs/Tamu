@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VisitorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-    // Route::resource('users', UserController::class);
+    Route::resource('visitors', VisitorController::class);
 });
 
 require __DIR__ . '/auth.php';
