@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\VisitorsDataTable;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 
 class VisitorController extends Controller
@@ -10,5 +11,52 @@ class VisitorController extends Controller
     public function index(VisitorsDataTable $dataTable)
     {
         return $dataTable->render('visitor.index');
+    }
+
+    public function create()
+    {
+        // Kode statis
+        $kodeStatis = 'TMU';
+        $monthYear = date('m/y');
+
+        // Mengambil kode terbaru dari database
+        $latestAnggota = Visitor::latest('created_at')->first();
+
+        if ($latestAnggota) {
+            $latestKode = $latestAnggota->number_anggota;
+        } else {
+            // Handle the case when no loan records are found
+            $latestKode = null; // or assign a default value
+        }
+
+        // Memecah kode menjadi 3 bagian
+        $kodeArray = explode('/', $latestKode);
+        $kodeBagian1 = isset($kodeArray[0]) ? substr($kodeArray[0], 3) : 0;
+        $kodeBagian2 = isset($kodeArray[1]) ? $kodeArray[1] : $monthYear;
+        $kodeBagian3 = isset($kodeArray[2]) ? $kodeArray[2] : $monthYear;
+
+        $final = $kodeBagian2 . '/' . $kodeBagian3;
+        // Mengambil bulan dan tahun saat ini
+        $monthYear = date('m/y');
+
+        if ($kodeBagian3 !== null && $monthYear === $final) {
+            // Jika kode terakhir sudah menggunakan bulan dan tahun saat ini, maka increment nomor kode terakhir
+            $latestKodeNumber = (int) $kodeBagian1 + 1;
+        } else {
+            // Jika kode terakhir tidak menggunakan bulan dan tahun saat ini, maka nomor kode terakhir di-reset menjadi 1
+            $latestKodeNumber = 1;
+        }
+
+        // Format nomor kode agar menjadi 3 digit
+        $nextNumberStr = str_pad($latestKodeNumber, 3, '0', STR_PAD_LEFT);
+
+        // Generate kode baru
+        $newKode = $kodeStatis . $nextNumberStr . '/' . $monthYear;
+
+
+
+
+
+        return view('visitor.create', compact('newKode'));
     }
 }
