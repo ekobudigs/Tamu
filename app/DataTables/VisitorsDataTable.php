@@ -22,7 +22,9 @@ class VisitorsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'visitor.action')
+            ->addColumn('action', function ($query) {
+                return view('visitor.action', ['row' => $query])->render();
+            })
             ->setRowId('id');
     }
 
@@ -64,8 +66,10 @@ class VisitorsDataTable extends DataTable
         return [
 
             Column::make('id'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('guest_name'),
+            Column::make('address'),
+            Column::make('purpose'),
+            Column::make('phone_number'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
