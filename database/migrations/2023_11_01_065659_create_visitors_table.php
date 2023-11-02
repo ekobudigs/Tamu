@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('visitors', function (Blueprint $table) {
             $table->id(); // ID (Primary Key)
-            $table->string('no_visitors'); // Nama Tamu
+            $table->string('no_visitors'); // No Tamu
             $table->string('guest_name'); // Nama Tamu
             $table->string('address'); // Alamat
             $table->string('phone_number'); // Nomor Telepon
