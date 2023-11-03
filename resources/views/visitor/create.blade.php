@@ -95,6 +95,27 @@
                         </div>
 
                         <div class="mb-6">
+                            <label for="department_id"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Departments') }}</label>
+                            <select id="department_id"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('department_id') is-invalid @enderror"
+                                name="department_id" required autocomplete="department_id" autofocus>
+                                @foreach ($departments as $id => $name)
+                                    <option value="{{ $id }}"
+                                        @if (old('department_id') === $id) selected @endif>
+                                        {{ $name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('department_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+
+                        <div class="mb-6">
                             <label for="office_institution_name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Nama Kantor') }}</label>
                             <input id="office_institution_name" type="text"
