@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\VisitorsDataTable;
 use App\Models\Visitor;
+use App\Models\Department;
 use Illuminate\Http\Request;
+use App\DataTables\VisitorsDataTable;
 
 class VisitorController extends Controller
 {
@@ -55,8 +56,9 @@ class VisitorController extends Controller
 
 
 
+        $departments = Department::pluck('name', 'id');
 
 
-        return view('visitor.create', compact('newKode'));
+        return view('visitor.create', compact('newKode', 'departments'));
     }
 }
