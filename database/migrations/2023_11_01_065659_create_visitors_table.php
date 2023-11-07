@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('purpose'); // ID Keperluan (Foreign Key ke Tabel Keperluan)
             $table->unsignedBigInteger('security_guard_id')->nullable(); // Security Guard ID
             $table->unsignedBigInteger('receptionist_id')->nullable(); // Receptionist ID
+            $table->unsignedBigInteger('user_id')->nullable(); //user create
             $table->integer('number_of_people'); // Kolom untuk Jumlah Orang (Jumlah Pengunjung)
             $table->timestamps();
         });
