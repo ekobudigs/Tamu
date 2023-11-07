@@ -6,9 +6,9 @@
     </x-slot>
 
     <div class="container">
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('visitors.store') }}">
             @csrf
-            
+
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
             
@@ -158,6 +158,19 @@
                                 name="number_of_people" value="{{ old('number_of_people') }}" required
                                 autocomplete="number_of_people">
                             @error('number_of_people')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="purpose"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Tujuan/Alasan') }}</label>
+                            <textarea id="purpose"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('purpose') is-invalid @enderror"
+                                name="purpose" required autocomplete="purpose">{{ old('purpose') }}</textarea>
+                            @error('purpose')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
