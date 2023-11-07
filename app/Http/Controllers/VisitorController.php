@@ -6,6 +6,8 @@ use App\Models\Visitor;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\DataTables\VisitorsDataTable;
+use App\Http\Requests\VisitorRequest;
+use Illuminate\Support\Carbon;
 
 class VisitorController extends Controller
 {
@@ -61,4 +63,17 @@ class VisitorController extends Controller
 
         return view('visitor.create', compact('newKode', 'departments'));
     }
+
+    public function store(VisitorRequest $request)
+    {
+        // Mendapatkan data yang sudah divalidasi dari request
+        $data = $request->validated();
+        $data['check_in_time'] = Carbon::now();
+        $data['status'] = 1;
+        // Menyimpan data ke dalam database
+        Visitor::create($data);
+
+        return redirect()->route('visitors.index')->with('success', 'Data pengunjung berhasil disimpan');
+    }
+
 }
