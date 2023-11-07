@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
 
+    {{-- {!! QrCode::size(200)->generate( $newKode) !!} --}}
     <div class="container">
         <form method="POST" action="{{ route('visitors.store') }}">
             @csrf
