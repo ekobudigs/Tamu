@@ -6,13 +6,14 @@
     </x-slot>
 
     <div class="container">
+        <form method="POST" action="">
+            @csrf
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div class="w-full p-4">
                 <div
                     class="card mx-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
-                    <form method="POST" action="">
-                        @csrf
+                   
 
                         <div class="mb-6">
                             <label for="name"
@@ -76,6 +77,22 @@
 
 
 
+
+                     
+
+                </div>
+            </div>
+
+            <div class="w-full p-4">
+                <div
+                    class="card mx-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+                
+
+                       
+
+
+
                         <div class="mb-6">
                             <label for="type"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Type') }}</label>
@@ -83,9 +100,9 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('type') is-invalid @enderror"
                                 name="type" required autocomplete="type" autofocus>
                                 <option value="guest" @if (old('type') === 'guest') selected @endif>
-                                    {{ __('Guest') }}</option>
+                                    {{ __('Pengunjung') }}</option>
                                 <option value="visitor" @if (old('type') === 'visitor') selected @endif>
-                                    {{ __('Visitor') }}</option>
+                                    {{ __('Tamu') }}</option>
                             </select>
                             @error('type')
                                 <span class="invalid-feedback" role="alert">
@@ -143,18 +160,19 @@
                             @enderror
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit"
-                                    class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Simpan</button>
-                            </div>
-                        </div>
-                    </form>
+                      
 
                 </div>
             </div>
 
         </div>
+        <div class="text-center mt-6 mb-6">
+            <div class="col-md-6 offset-md-4">
+                <button type="submit"
+                    class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Simpan</button>
+            </div>
+        </div>
+    </form>
     </div>
     </div>
 </x-app-layout>
