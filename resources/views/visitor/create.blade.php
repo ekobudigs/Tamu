@@ -8,6 +8,10 @@
     <div class="container">
         <form method="POST" action="">
             @csrf
+            
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
+            
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div class="w-full p-4">
                 <div
