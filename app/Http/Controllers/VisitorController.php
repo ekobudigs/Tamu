@@ -76,4 +76,12 @@ class VisitorController extends Controller
         return redirect()->route('visitors.index')->with('success', 'Data pengunjung berhasil disimpan');
     }
 
+    public function edit($id)
+    {
+        $visitor = Visitor::find($id); // Ganti dengan cara Anda mengambil data tamu dari database
+        $departments = Department::pluck('name', 'id');// Ganti dengan daftar departemen yang sesuai
+
+        return view('visitor.edit', compact('visitor', 'departments'));
+    }
+
 }
