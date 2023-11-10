@@ -6,6 +6,7 @@ use App\Models\Visitor;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\DataTables\VisitorsDataTable;
+use App\Http\Requests\VisitorEditRequest;
 use App\Http\Requests\VisitorRequest;
 use Illuminate\Support\Carbon;
 
@@ -84,34 +85,10 @@ class VisitorController extends Controller
         return view('visitor.edit', compact('visitor', 'departments'));
     }
 
-    public function update(Request $request, $id)
+    public function update(VisitorEditRequest $request, Visitor $visitor)
     {
-        // Validasi data yang dikirim oleh pengguna
-        $validatedData = $request->validate([
-            'no_visitors' => 'required|string|max:255',
-            'guest_name' => 'required|string|max:255',
-            'phone_number' => 'required|string|max:15',
-            'email' => 'required|email|max:255',
-            'address' => 'required|string',
-            'type' => 'required|in:guest,visitor',
-            'department_id' => 'required|exists:departments,id',
-            'office_institution_name' => 'required|string|max:255',
-            'number_of_people' => 'required|integer|min:1',
-            'purpose' => 'required|string',
-        ]);
-
-        // Mengambil data tamu berdasarkan ID
-        $visitor = Visitor::find($id);
-
-        // Jika data tamu tidak ditemukan, redirect ke halaman sebelumnya
-        if (!$visitor) {
-            return redirect()->back()->with('error', 'Data tamu tidak ditemukan');
-        }
-
-        // Memperbarui data tamu dengan data yang baru
+        $validatedData = $request->validated();
         $visitor->update($validatedData);
-
-        // Redirect ke halaman tampilan data tamu dengan pesan sukses
         return redirect()->route('visitors.index', $visitor->id)->with('success', 'Data tamu berhasil diperbarui');
     }
 
