@@ -67,11 +67,11 @@ class VisitorController extends Controller
 
     public function store(VisitorRequest $request)
     {
-        // Mendapatkan data yang sudah divalidasi dari request
+
         $data = $request->validated();
         $data['check_in_time'] = Carbon::now();
         $data['status'] = 1;
-        // Menyimpan data ke dalam database
+
         Visitor::create($data);
 
         return redirect()->route('visitors.index')->with('success', 'Data pengunjung berhasil disimpan');
@@ -79,8 +79,8 @@ class VisitorController extends Controller
 
     public function edit($id)
     {
-        $visitor = Visitor::find($id); // Ganti dengan cara Anda mengambil data tamu dari database
-        $departments = Department::pluck('name', 'id'); // Ganti dengan daftar departemen yang sesuai
+        $visitor = Visitor::find($id);
+        $departments = Department::pluck('name', 'id');
 
         return view('visitor.edit', compact('visitor', 'departments'));
     }
@@ -98,15 +98,12 @@ class VisitorController extends Controller
 
         $visitor = Visitor::find($id);
 
-
         if (!$visitor) {
             return redirect()->back()->with('error', 'Data tamu tidak ditemukan');
         }
+        $department = $visitor->department;
 
-
-        $departments = Department::pluck('name', 'id');
-
-        return view('visitor.show', compact('visitor', 'departments'));
+        return view('visitor.show', compact('visitor', 'department'));
     }
 
     public function destroy(Visitor $visitor)
