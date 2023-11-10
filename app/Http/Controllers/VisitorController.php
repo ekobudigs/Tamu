@@ -108,4 +108,10 @@ class VisitorController extends Controller
 
         return view('visitor.show', compact('visitor', 'departments'));
     }
+
+    public function destroy(Visitor $visitor)
+    {
+        $visitor->delete();
+        return redirect()->route('visitors.index')->with('success', 'Data tamu berhasil dihapus');
+    }
 }
