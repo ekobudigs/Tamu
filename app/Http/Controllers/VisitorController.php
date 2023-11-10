@@ -79,9 +79,24 @@ class VisitorController extends Controller
     public function edit($id)
     {
         $visitor = Visitor::find($id); // Ganti dengan cara Anda mengambil data tamu dari database
-        $departments = Department::pluck('name', 'id');// Ganti dengan daftar departemen yang sesuai
+        $departments = Department::pluck('name', 'id'); // Ganti dengan daftar departemen yang sesuai
 
         return view('visitor.edit', compact('visitor', 'departments'));
     }
 
+    public function show($id)
+    {
+      
+        $visitor = Visitor::find($id);
+
+      
+        if (!$visitor) {
+            return redirect()->back()->with('error', 'Data tamu tidak ditemukan');
+        }
+
+    
+        $departments = Department::pluck('name', 'id');
+
+        return view('visitor.show', compact('visitor', 'departments'));
+    }
 }
