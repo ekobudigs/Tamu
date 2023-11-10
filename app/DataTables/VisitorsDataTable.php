@@ -45,7 +45,7 @@ class VisitorsDataTable extends DataTable
             ->setTableId('visitors-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            //->dom('Bfrtip')
+            ->responsive(true)
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([
