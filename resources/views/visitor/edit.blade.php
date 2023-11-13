@@ -87,9 +87,9 @@
                                 name="type" required autocomplete="type" autofocus>
                                 <option value="" @if ($visitor->type === '') selected @endif>
                                     {{ __('Pilih Type') }}</option>
-                                <option value="guest" @if ($visitor->type === 'Guest') selected @endif>
+                                <option value="Guest" @if ($visitor->type === 'Guest') selected @endif>
                                     {{ __('Pengunjung') }}</option>
-                                <option value="visitor" @if ($visitor->type === 'Visitor') selected @endif>
+                                <option value="Visitor" @if ($visitor->type === 'Visitor') selected @endif>
                                     {{ __('Tamu') }}</option>
                             </select>
                             @error('type')
