@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('visitor_surveys', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('visitor_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('visitor_id')->references('id')->on('visitors')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->text('survey_answer');
+            $table->integer('survey_scale')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
