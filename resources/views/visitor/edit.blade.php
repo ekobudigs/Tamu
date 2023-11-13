@@ -41,7 +41,8 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('No Hp') }}</label>
                             <input id="phone_number" type="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('phone_number') is-invalid @enderror"
-                                name="phone_number" value="{{ $visitor->phone_number }}" required autocomplete="phone_number">
+                                name="phone_number" value="{{ $visitor->phone_number }}" required
+                                autocomplete="phone_number">
                             @error('phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -84,9 +85,11 @@
                             <select id="type"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('type') is-invalid @enderror"
                                 name="type" required autocomplete="type" autofocus>
-                                <option value="guest" @if ($visitor->type === 'guest') selected @endif>
+                                <option value="" @if ($visitor->type === '') selected @endif>
+                                    {{ __('Pilih Type') }}</option>
+                                <option value="guest" @if ($visitor->type === 'Guest') selected @endif>
                                     {{ __('Pengunjung') }}</option>
-                                <option value="visitor" @if ($visitor->type === 'visitor') selected @endif>
+                                <option value="visitor" @if ($visitor->type === 'Visitor') selected @endif>
                                     {{ __('Tamu') }}</option>
                             </select>
                             @error('type')
@@ -101,6 +104,7 @@
                             <select id="department_id"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('department_id') is-invalid @enderror"
                                 name="department_id" required autocomplete="department_id" autofocus>
+                                <option value="">Pilih Department</option>
                                 @foreach ($departments as $id => $name)
                                     <option value="{{ $id }}"
                                         @if ($visitor->department_id == $id) selected @endif>
