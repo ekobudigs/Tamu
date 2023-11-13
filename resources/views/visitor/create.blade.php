@@ -106,9 +106,9 @@
                                 name="type" required autocomplete="type" autofocus>
                                 <option value="" @if (old('type') === null) selected @endif>Pilih Type
                                 </option>
-                                <option value="guest" @if (old('type') === 'guest') selected @endif>
+                                <option value="Guest" @if (old('type') === 'Guest') selected @endif>
                                     {{ __('Pengunjung') }}</option>
-                                <option value="visitor" @if (old('type') === 'visitor') selected @endif>
+                                <option value="Visitor" @if (old('type') === 'Visitor') selected @endif>
                                     {{ __('Tamu') }}</option>
                             </select>
                             @error('type')
@@ -128,7 +128,7 @@
                                     Departemen</option>
                                 @foreach ($departments as $id => $name)
                                     <option value="{{ $id }}"
-                                        @if (old('department_id') === $id) selected @endif>
+                                        @if (old('department_id') == $id) selected @endif>
                                         {{ $name }}
                                     </option>
                                 @endforeach
