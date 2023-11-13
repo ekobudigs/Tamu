@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\VisitorSurveyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::resource('visitors', VisitorController::class);
+
+    Route::get('visitors/{id}/survey', [VisitorSurveyController::class, 'index'])->name('visitors.survey');
 });
 
 require __DIR__ . '/auth.php';
