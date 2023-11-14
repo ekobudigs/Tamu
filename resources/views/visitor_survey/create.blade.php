@@ -7,7 +7,7 @@
 
     {{-- {!! QrCode::size(200)->generate( $newKode) !!} --}}
     <div class="container">
-        <form method="POST" action="{{ route('visitors.store') }}">
+        <form method="POST" action="{{ route('visitors.survey.store') }}">
             @csrf
 
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
