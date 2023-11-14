@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('visitors', VisitorController::class);
 
     Route::get('visitors/{id}/survey', [VisitorSurveyController::class, 'index'])->name('visitors.survey');
+    Route::post('visitors/survey', [VisitorSurveyController::class, 'store'])->name('visitors.survey.store');
 });
 
 require __DIR__ . '/auth.php';
