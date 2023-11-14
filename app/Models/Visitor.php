@@ -16,4 +16,8 @@ class Visitor extends Model
     {
         return $this->belongsTo(Department::class);
     }
+    public function visitorSurveys()
+    {
+        return $this->hasMany(VisitorSurvey::class);
+    }
 }
