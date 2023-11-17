@@ -27,7 +27,7 @@ class VisitorEditRequest extends FormRequest
             'phone_number' => 'required|string|max:15',
             'email' => 'required|email|max:255',
             'address' => 'required|string',
-            'type' => 'required|in:guest,visitor',
+            'type' => 'required|in:Guest,Visitor',
             'department_id' => 'required|exists:departments,id',
             'office_institution_name' => 'required|string|max:255',
             'number_of_people' => 'required|integer|min:1',
