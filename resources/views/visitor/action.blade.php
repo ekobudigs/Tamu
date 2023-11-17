@@ -12,6 +12,13 @@
     Show
 </a>
 
+<!-- Tombol Note -->
+<a href="{{ route('note.index', $row->id) }}"
+    class="text-white bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 font-medium rounded-lg text-sm px-1 py-1 mt-2 text-center mr-2 mb-2">
+    Note
+</a>
+
+
 <!-- Tombol Delete (gunakan form untuk konfirmasi penghapusan) -->
 <form action="{{ route('visitors.destroy', $row->id) }}" method="POST" class="inline">
     @csrf
