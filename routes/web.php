@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ScanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VisitorController;
@@ -35,6 +36,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('visitors/{id}/survey', [VisitorSurveyController::class, 'index'])->name('visitors.survey');
     Route::post('visitors/survey', [VisitorSurveyController::class, 'store'])->name('visitors.survey.store');
+
+    Route::get('scan', [ScanController::class, 'index'])->name('scan.index');
 });
 
 require __DIR__ . '/auth.php';
