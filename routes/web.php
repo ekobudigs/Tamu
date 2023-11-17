@@ -5,6 +5,7 @@ use App\Http\Controllers\ScanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\NoteVisitorController;
 use App\Http\Controllers\VisitorSurveyController;
 
 /*
@@ -37,6 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::get('visitors/{id}/survey', [VisitorSurveyController::class, 'index'])->name('visitors.survey');
     Route::post('visitors/survey', [VisitorSurveyController::class, 'store'])->name('visitors.survey.store');
 
+    // Route::get('visitors/{id}/survey', [VisitorSurveyController::class, 'index'])->name('visitors.survey');
+
+    Route::get('note/{id}', [NoteVisitorController::class, 'index'])->name('note.index');
     Route::get('scan', [ScanController::class, 'index'])->name('scan.index');
 });
 
