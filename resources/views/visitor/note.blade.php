@@ -1,0 +1,1 @@
+<h1>Ok Note {{$visitor->id}} </h1>
