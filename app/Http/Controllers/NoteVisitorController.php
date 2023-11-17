@@ -9,12 +9,21 @@ use Illuminate\Support\Facades\Auth;
 class NoteVisitorController extends Controller
 {
 
-    // Menampilkan halaman special note
-    public function index()
+    public function index($id)
     {
-
-        return view('visitor.note');
+        // Mengambil data Visitor berdasarkan ID
+        $visitor = Visitor::find($id);
+    
+        // Memeriksa apakah data ditemukan
+        if ($visitor) {
+            // Mengirim data Visitor ke view
+            return view('visitor.note', compact('visitor'));
+        } else {
+            // Jika data tidak ditemukan, bisa menangani sesuai kebutuhan, misalnya redirect atau menampilkan pesan kesalahan.
+            return redirect()->route('visitors.index')->with('error', 'Visitor not found');
+        }
     }
+    
     public function updateSpecialNote(Request $request)
     {
         // Ambil data user yang sedang login
