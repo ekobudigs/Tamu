@@ -30,7 +30,7 @@ class NoteVisitorController extends Controller
         $user = Auth::user();
 
         // Ambil data visitor yang memiliki user_id yang sama dengan user yang sedang login
-        $visitor = Visitor::where('user_id', $user->id)->first();
+        $visitor = Visitor::where('id', $request->id)->first();
 
         // Update kolom special_note pada visitor dengan data yang diberikan
         $visitor->special_note = $request->input('special_note');
