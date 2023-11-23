@@ -26,6 +26,7 @@ class NoteVisitorController extends Controller
     
     public function updateSpecialNote(Request $request)
     {
+        
         // Ambil data user yang sedang login
         $user = Auth::user();
 
@@ -33,7 +34,7 @@ class NoteVisitorController extends Controller
         $visitor = Visitor::where('id', $request->id)->first();
 
         // Update kolom special_note pada visitor dengan data yang diberikan
-        $visitor->special_note = $request->input('special_note');
+        $visitor->special_notes = $request->special_note;
         $visitor->status = 3;
         $visitor->save();
 
