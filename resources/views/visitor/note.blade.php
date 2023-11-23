@@ -7,7 +7,7 @@
 
     {{-- {!! QrCode::size(200)->generate( $newKode) !!} --}}
     <div class="container">
-        <form method="POST" action="{{ route('visitors.store') }}">
+        <form method="POST" action="{{ route('update.special.note') }}">
             @csrf
 
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -18,14 +18,14 @@
                     <div
                         class="card mx-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
-                        <input type="hidden" id="id" name="{{ $visitor->id }}" value="{{ $visitor->id }}" >
+                        <input type="hidden" id="id" name="id" value="{{ $visitor->id }}" >
 
                         <div class="mb-6">
                             <label for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Note  Tamu') }}</label>
-                            <input id="no_visitors" type="text"
+                            <input id="special_note" type="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                name="no_visitors" required  autofocus>
+                                name="special_note" required  autofocus>
 
                         </div>
 
