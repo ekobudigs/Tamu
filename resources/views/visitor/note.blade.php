@@ -18,7 +18,7 @@
                     <div
                         class="card mx-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
-
+                        <input type="hidden" id="id" name="{{ $visitor->id }}" value="{{ $visitor->id }}" >
 
                         <div class="mb-6">
                             <label for="name"
