@@ -34,6 +34,7 @@ class NoteVisitorController extends Controller
 
         // Update kolom special_note pada visitor dengan data yang diberikan
         $visitor->special_note = $request->input('special_note');
+        $visitor->status = 3;
         $visitor->save();
 
         return redirect()->back()->with('success', 'Special note updated successfully.');
