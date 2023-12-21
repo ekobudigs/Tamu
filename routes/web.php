@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('note/{id}', [NoteVisitorController::class, 'index'])->name('note.index');
     Route::get('scan', [ScanController::class, 'index'])->name('scan.index');
+    Route::get('barcodeGenerate/{id}', [VisitorController::class, 'barcodeGenerate'])->name('visitors.barcodeGenerate');
 
 
     Route::post('/update-special-note', [NoteVisitorController::class, 'updateSpecialNote'])->name('update.special.note');
