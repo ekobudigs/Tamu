@@ -111,4 +111,14 @@ class VisitorController extends Controller
         $visitor->delete();
         return redirect()->route('visitors.index')->with('success', 'Data tamu berhasil dihapus');
     }
+
+    public function barcodeGenerate($id)
+    {
+        // dd($id);
+        $visitor = Visitor::find($id);
+
+
+    return view('visitor.barcode', compact('visitor'));
+
+    }
 }
