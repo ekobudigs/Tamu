@@ -28,7 +28,7 @@ class ScanController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Visitor not found.',
-            ], 404);
+            ]);
         }
     }
 
