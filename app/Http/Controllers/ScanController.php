@@ -16,11 +16,19 @@ class ScanController extends Controller
 
     public function getVisitor(Request $request)
     {
-        $visitor = Visitor::where('id', $request->id)->first();
+        $visitor = Visitor::where('no_visitors', $request->no_visitors)->first();
+    
         if ($visitor) {
-            return redirect()->route('scan.index', ['visitor' => $visitor])->with('success', 'Visitor successfully scanned.');
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Visitor successfully scanned.',
+                'visitor' => $visitor,
+            ]);
         } else {
-            return redirect()->back()->with('error', 'Visitor not found.');
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Visitor not found.',
+            ], 404);
         }
     }
 
