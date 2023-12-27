@@ -94,6 +94,7 @@
                         // Pengunjung tidak ditemukan
                         console.log(response.message);
                         displayNotFoundMessage();
+                        hideValidationButton();
                         // Tambahkan logika atau manipulasi DOM lainnya di sini
                     }
                 },
@@ -157,6 +158,19 @@ function displayButtonValidate() {
 
     // Tampilkan pesan dalam div
     infoDiv.innerHTML = html;
+}
+
+function hideValidationButton() {
+    // Ambil elemen button untuk menampilkan tombol validasi
+    const buttonDiv = document.getElementById("validasi");
+
+    // Pastikan elemen dengan ID "validateButton" ditemukan
+    if (buttonDiv) {
+        // Sembunyikan tombol validasi
+        buttonDiv.classList.add('hidden');
+    } else {
+        console.error('Elemen dengan ID "validateButton" tidak ditemukan.');
+    }
 }
 
         function onScanFailure(error) {
