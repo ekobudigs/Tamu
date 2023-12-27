@@ -46,6 +46,10 @@
                                     <div id="reader" width="600px"></div>
                                     <input type="text" id="resultInput"
                                         placeholder="Hasil QR Code akan muncul di sini" />
+
+                                        <div id="visitorInfo">
+
+                                        </div>
                                 </div>
                                 <!-- Modal footer -->
                                 <div
@@ -87,9 +91,11 @@
                         // Pengunjung berhasil ditemukan
                         console.log(response.visitor);
                         // Tambahkan logika atau manipulasi DOM lainnya di sini
+                        displayVisitorInfo(response.visitor);
                     } else {
                         // Pengunjung tidak ditemukan
                         console.log(response.message);
+                        displayNotFoundMessage();
                         // Tambahkan logika atau manipulasi DOM lainnya di sini
                     }
                 },
@@ -100,9 +106,44 @@
             });
        
 
-
-
         }
+
+        function displayVisitorInfo(visitor) {
+    // Ambil elemen div untuk menampilkan informasi pengunjung
+    const infoDiv = document.getElementById("visitorInfo");
+
+    // Buat HTML untuk menampilkan informasi pengunjung
+    const html = `
+        <div>
+            <p><strong>Guest Name:</strong> ${visitor.guest_name}</p>
+            <p><strong>Address:</strong> ${visitor.address}</p>
+            <p><strong>Phone Number:</strong> ${visitor.phone_number}</p>
+            <p><strong>Email:</strong> ${visitor.email}</p>
+            <p><strong>Check-in Time:</strong> ${visitor.check_in_time}</p>
+            <p><strong>Type:</strong> ${visitor.type}</p>
+            <p><strong>Office/Institution Name:</strong> ${visitor.office_institution_name}</p>
+            <p><strong>Purpose:</strong> ${visitor.purpose}</p>
+        </div>
+    `;
+
+    // Tampilkan informasi pengunjung dalam div
+    infoDiv.innerHTML = html;
+}
+
+function displayNotFoundMessage() {
+    // Ambil elemen div untuk menampilkan pesan tidak ditemukan
+    const infoDiv = document.getElementById("visitorInfo");
+
+    // Buat HTML untuk menampilkan pesan tidak ditemukan
+    const html = `
+        <div>
+            <p>Data tamu tidak ada di sistem. Silahkan laporkan ke admin.</p>
+        </div>
+    `;
+
+    // Tampilkan pesan dalam div
+    infoDiv.innerHTML = html;
+}
 
         function onScanFailure(error) {
             // console.warn(`Code scan error = ${error}`);
