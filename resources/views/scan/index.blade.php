@@ -75,6 +75,33 @@
                 inputElement.value = decodedText;
             }
             // Handle the scanned code as you like
+
+             // Kirim permintaan Ajax
+             $.ajax({
+                url: "{{ route('getVisitor') }}",
+                type: 'GET',
+                data: { no_visitors: decodedText },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status === 'success') {
+                        // Pengunjung berhasil ditemukan
+                        console.log(response.visitor);
+                        // Tambahkan logika atau manipulasi DOM lainnya di sini
+                    } else {
+                        // Pengunjung tidak ditemukan
+                        console.log(response.message);
+                        // Tambahkan logika atau manipulasi DOM lainnya di sini
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // console.error('Error:', error);
+                    // Tambahkan logika atau manipulasi DOM lainnya di sini
+                }
+            });
+       
+
+
+
         }
 
         function onScanFailure(error) {
