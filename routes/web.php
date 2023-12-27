@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('note/{id}', [NoteVisitorController::class, 'index'])->name('note.index');
     Route::get('scan', [ScanController::class, 'index'])->name('scan.index');
+    Route::get('getVisitor', [ScanController::class, 'getVisitor'])->name('getVisitor');
     Route::get('barcodeGenerate/{id}', [VisitorController::class, 'barcodeGenerate'])->name('visitors.barcodeGenerate');
 
 
