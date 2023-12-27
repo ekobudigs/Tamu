@@ -1,4 +1,12 @@
 <!-- Tombol Edit -->
+
+<div class="  mt-2 mb-2">
+    <a href="{{ route('visitors.barcodeGenerate', $row->id) }}"
+        class="text-white bg-gradient-to-r from-sky-500 via-sky-600 to-sky-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-sky-300 dark:focus:ring-sky-800 font-medium rounded-lg px-1 py-1 text-sm text-center ">
+        Barcode
+    </a>
+</div>
+
 <div class="  mt-2 mb-2">
     <a href="{{ route('visitors.edit', $row->id) }}"
         class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg px-1 py-1 text-sm text-center ">
